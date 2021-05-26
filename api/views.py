@@ -23,8 +23,8 @@ class GetUIDView(generics.ListAPIView):
         serializer = RandomUidSerializer(queryset, many=True)
         data = json.loads(json.dumps(serializer.data))
         context = {}
-        for i in range(len(data)):
-            for _, _ in data[i].items():
-                context.update({data[i]["created_at"]: data[i]["uuid"]})
+        for d in data:
+            for _, _ in d.items():
+                context.update({d["created_at"]: d["uuid"]})
 
         return Response(context, status=status.HTTP_200_OK)
