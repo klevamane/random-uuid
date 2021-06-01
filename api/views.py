@@ -20,7 +20,7 @@ class GetUIDView(generics.ListAPIView):
     def list(self, request, *args, **kwargs):
         generate_random_uuid()
         queryset = self.get_queryset()
-        serializer = RandomUidSerializer(queryset, many=True)
+        serializer = self.get_serializer(queryset, many=True)
         data = json.loads(json.dumps(serializer.data))
         context = {}
         for d in data:
